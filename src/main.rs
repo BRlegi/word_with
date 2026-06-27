@@ -65,7 +65,7 @@ async fn main() {
 
     let mut line_separator = String::new();
     for _i in 0..get_window_width(){
-        line_separator.push('―'); 
+        line_separator.push('─'); 
     }
 
 
