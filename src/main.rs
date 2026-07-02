@@ -1,5 +1,5 @@
 use serde::{Serialize, Deserialize};
-use std::io::{self, Write, stdout};
+use std::io::{self, Write};
 use reqwest::Client;
 use colored::Colorize;
 use terminal_size::{Height, Width, terminal_size};
@@ -81,7 +81,8 @@ async fn main() {
         let random_index = rand::random_range(..letters.len());
         let random_letter = letters[random_index];
 
-        println!("\n{} {}", "Type a word that begins with: ".bold(), random_letter.bold());
+        print!("\n{} \"{}\" ", "Type a word that begins with:".bold(), random_letter.bold());
+        println!("{}", " 「type \"quit\" to quit」".italic());
 
         let mut guess = String::new();
         io::stdin()
@@ -130,29 +131,13 @@ async fn main() {
         }
 
 
+        let mut hp = String::new();
+        for _i in 0..get_window_width() {
+            hp.push('#');
+        }
 
+        println!("HP: ");
+        println!("{}", hp.green().bold());
 
-
-        
-                //match request {
-        //    Ok(Response) => {
-        //        let text: Vec<WordDict> = resp.text().await?;
-        //        println!("Success: {}", text);
-        //    }
-        //    Err(err) => {
-        //        eprintln!("Request failed: {}", err);
-        //        return Err(err.into());
-        //    }
-        //}
-
-        //println!("{:#?}", request);
-
-        //println!("word choosen: {}", request[0].word);
-        //println!("word meaning as a noun: {}", request[0].meanings[0].definitions[0].definition);
-        //if request[0].meanings.len() > 1 {
-        //    println!("word meaning as a verb: {}", request[0].meanings[1].definitions[1].definition);
-        //}
-
-        //https://api.dictionaryapi.dev/api/v2/entries/en/zoo
     }
 }
